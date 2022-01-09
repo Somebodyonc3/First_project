@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import matplotlib.animation as animation
 
-edge = 60
 g = 9.8
 
 l = int(input('Введите значение для длины нити маятника:'))
@@ -40,7 +39,7 @@ def animate(i):
 	line.set_data([0,l * sin(phi)], [0, -l * cos(phi)])
 	return line,
 
-
+edge = 60
 plt.axis('equal')
 plt.title('Колебания маятника')
 ax.set_xlim(-edge, edge)
