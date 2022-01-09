@@ -24,10 +24,9 @@ time = np.arange(0, 1000, dt)
 
 state = integrate.odeint(sh, init_state, time)
 
-
 fig = plt.figure(figsize = (8,6))
 ax = plt.axes(xlim = (-2 * l, 2 * l), ylim = (-2 * l, l))
-line, = ax.plot([],[],'-o', lw = 2, ms = 10, color = 'g')
+line, = ax.plot([],[],'-o', lw = 2, ms = 10, color = 'b')
 
 def init():
 	return line,
@@ -50,5 +49,5 @@ anim = animation.FuncAnimation(fig,animate,
 								frames = len(time),
 								interval = 40,
 								blit = True)
-
+#anim.save('kolebania.mp4')
 plt.show()
