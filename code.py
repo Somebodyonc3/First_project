@@ -12,15 +12,15 @@ g = 9.8
 l = int(input('Введите значение для длины нити маятника:'))
 m = int(input('Введите значение для массы тела:'))
 
-def sh(r, t):
+def sh(r):
+
 	theta, omega = r
 	sh_theta = omega
 	sh_omega = -g / l * sin(theta)
 	return np.array([sh_theta,sh_omega], float)
 
 init_state = np.radians([89.0,0])
-dt = 0.1
-time = np.arange(0, 1000, dt)
+time = np.arange(0, 1000, 0.1)
 
 state = integrate.odeint(sh, init_state, time)
 
@@ -38,7 +38,7 @@ def animate(i):
 	line.set_data([0,l * sin(phi)], [0, -l * cos(phi)])
 	return line,
 
-edge = 60
+edge = l * 1.5
 plt.axis('equal')
 plt.title('Колебания маятника')
 ax.set_xlim(-edge, edge)
@@ -49,5 +49,5 @@ anim = animation.FuncAnimation(fig,animate,
 								frames = len(time),
 								interval = 40,
 								blit = True)
-#anim.save('kolebania.mp4')
+anim.save('kolebania.mp4')
 plt.show()
