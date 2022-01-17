@@ -12,15 +12,14 @@ g = 9.8
 l = int(input('Введите значение для длины нити маятника:'))
 m = int(input('Введите значение для массы тела:'))
 
-def sh(r):
-
+def sh(r):								#уравнение маятника
 	theta, omega = r
 	sh_theta = omega
 	sh_omega = -g / l * sin(theta)
 	return np.array([sh_theta,sh_omega], float)
 
 init_state = np.radians([89.0,0])
-time = np.arange(0, 1000, 0.1)
+time = np.arange(0, 1000, 0.1)			#кол-во точек
 
 state = integrate.odeint(sh, init_state, time)
 
@@ -31,7 +30,7 @@ line, = ax.plot([],[],'-o', lw = 2, ms = 10, color = 'b')
 def init():
 	return line,
 
-def animate(i):
+def animate(i):							#счетчик точек
 
 	phi = state[i, 0]
 
