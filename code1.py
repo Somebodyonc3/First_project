@@ -3,9 +3,9 @@ from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 # Определяем переменную величину
-frames = 31
-seconds_in_year = 31 * 24 * 60 * 60
-years = 4
+frames = 30
+seconds_in_year = 30 * 24 * 60 * 60
+years = 1.5
 t = np.linspace(0, years*seconds_in_year, frames)
 
 # Определяем функцию для системы диф. уравнений
@@ -34,7 +34,7 @@ m = 1.98 * 10**(30)
 x10 = -0.387 * 149 * 10**9
 v_x10 = 0
 y10 = 0
-v_y10 = 40000
+v_y10 = 41000
 
 x20 = 0
 v_x20 = -32020
@@ -69,17 +69,17 @@ ball1, = plt.plot([], [], 'o', color='r', ms=15)
 
 def get_arrow(theta):
     x = 0
-    y = 10e7
+    y = 10e4
     u = np.sin(theta)
     v = np.cos(theta)
     return x, y, u, v
 
-quiver = ax.quiver(*get_arrow(120), scale=3.5)
+quiver = ax.quiver(*get_arrow(100), scale=4, width=0.001)
 
 def update(theta):
     global quiver
     quiver.remove()
-    quiver = ax.quiver(*get_arrow(theta), scale=3.5)
+    quiver = ax.quiver(*get_arrow(theta), scale=4, width=0.001)
 
 plt.plot([0], [0], 'o', color='orange', ms=40)
 
@@ -89,13 +89,14 @@ def animate(i):
 
 ani = FuncAnimation(fig,
                     animate,
-                    frames=31,
+                    frames=30,
                     interval=30)
 
 ani1 = FuncAnimation(fig,
                     update,
-                    frames=31,
-                    interval=15)
+                    frames=30,
+                    interval=30)
+
 plt.axis('equal')
 edge = 10e10
 ax.set_xlim(-edge, edge)
